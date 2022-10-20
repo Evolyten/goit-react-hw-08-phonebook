@@ -15,7 +15,7 @@ const validationSchema = Yup.object().shape({
   email: Yup.string()
     .required('Please enter the email')
     .matches(
-      /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-z]+)$/,
+      /^([a-zA-Z0-9_\-.]+)@([a-zA-Z0-9_\-.]+)\.([a-zA-z]+)$/,
       'Not correct email'
     ),
 
