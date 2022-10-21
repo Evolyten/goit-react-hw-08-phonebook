@@ -1,13 +1,12 @@
 import React, { useEffect, lazy, Suspense } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import SideBar from './AppBar/AppBar';
-// import ContactBook from './ContactBook/ContactBook';
-// import HomePage from './HomePage/HomePage';
-// import RegistrationForm from './RegistrationForm/RegistrationFrom';
-// import LogInForm from './LogInForm/LogInForm';
-import { Routes, Route, Navigate } from 'react-router-dom';
+
+import { Routes, Route } from 'react-router-dom';
 import { fetchCurrentUser } from 'redux/contactsOperation';
-import { getIsLoggedIn } from 'redux/contactsSelectors';
+import { getIsCurrentUserFetching } from 'redux/contactsSelectors';
+import PrivateRoute from './PrivateRoute';
+import PublicRoute from './PublickRoute';
 
 const ContactBook = lazy(() => import('./ContactBook/ContactBook'));
 const HomePage = lazy(() => import('./HomePage/HomePage'));
@@ -18,32 +17,54 @@ const LogInForm = lazy(() => import('./LogInForm/LogInForm'));
 
 export default function App() {
   const dispatch = useDispatch();
-  const isLoggedIn = useSelector(getIsLoggedIn);
-
+  const isCurrentUserFetching = useSelector(getIsCurrentUserFetching);
+  console.log();
   useEffect(() => {
     dispatch(fetchCurrentUser());
-  });
+  }, [dispatch]);
 
   return (
-    <>
-      <SideBar />
-      <Suspense fallback={null}>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route
-            path="/register"
-            element={isLoggedIn ? <Navigate to="/" /> : <RegistrationForm />}
-          />
-          <Route
-            path="/login"
-            element={isLoggedIn ? <Navigate to="/" /> : <LogInForm />}
-          />
-          <Route
-            path="/contacts"
-            element={isLoggedIn ? <ContactBook /> : <Navigate to="/login" />}
-          />
-        </Routes>
-      </Suspense>
-    </>
+    !isCurrentUserFetching && (
+      <>
+        (<SideBar />
+        <Suspense fallback={null}>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <PublicRoute>
+                  <HomePage />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/register"
+              element={
+                <PublicRoute restricted>
+                  <RegistrationForm />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/login"
+              element={
+                <PublicRoute restricted>
+                  <LogInForm />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/contacts"
+              element={
+                <PrivateRoute>
+                  <ContactBook />
+                </PrivateRoute>
+              }
+            />
+          </Routes>
+        </Suspense>
+        )
+      </>
+    )
   );
 }
