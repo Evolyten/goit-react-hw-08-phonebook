@@ -1,12 +1,12 @@
 import React from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Field, ErrorMessage } from 'formik';
 import toast from 'react-hot-toast';
-import css from './ContactForm.module.css';
 import { addContact } from 'redux/contactsOperation';
 import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup';
 import { getContacts } from 'redux/contactsSelectors';
-
+import { Button, FormLabel, Input, VStack } from '@chakra-ui/react';
+import { Section } from 'components/Section/Section';
 const initialValues = {
   name: '',
   number: '',
@@ -46,26 +46,63 @@ export const ContactForm = () => {
   };
 
   return (
-    <Formik
-      initialValues={initialValues}
-      onSubmit={handleSubmit}
-      validationSchema={validationSchema}
-    >
-      <Form className={css.form}>
-        <label className={css.label}>
-          Name
-          <Field className={css.input} type="text" name="name" />
-          <ErrorMessage name="name" />
-        </label>
-        <label className={css.label}>
-          Number
-          <Field className={css.input} type="tel" name="number" />
-          <ErrorMessage name="number" />
-        </label>
-        <button className={css.btnSubmit} type="submit">
-          add contact
-        </button>
-      </Form>
-    </Formik>
+    <Section title="Phonebook" height={400}>
+      <Formik
+        initialValues={initialValues}
+        onSubmit={handleSubmit}
+        validationSchema={validationSchema}
+      >
+        {({ handleSubmit, errors, touched }) => (
+          <form onSubmit={handleSubmit}>
+            <VStack spacing={6} align="flex-start">
+              <FormLabel htmlFor="name">Contact Name</FormLabel>
+              <Field
+                as={Input}
+                id="name"
+                name="name"
+                type="name"
+                variant="filled"
+              />
+              <ErrorMessage name="name" />
+              <FormLabel htmlFor="number">Number</FormLabel>
+              <Field
+                as={Input}
+                id="number"
+                name="number"
+                type="number"
+                variant="filled"
+                autoComplete="current-password"
+              />
+              <ErrorMessage name="number" />
+              <Button type="submit" colorScheme="purple" width="full">
+                Add Contact
+              </Button>
+            </VStack>
+          </form>
+        )}
+      </Formik>
+    </Section>
+
+    // <Formik
+    //   initialValues={initialValues}
+    //   onSubmit={handleSubmit}
+    //   validationSchema={validationSchema}
+    // >
+    //   <Form className={css.form}>
+    //     <label className={css.label}>
+    //       Name
+    //       <Field className={css.input} type="text" name="name" />
+    //       <ErrorMessage name="name" />
+    //     </label>
+    //     <label className={css.label}>
+    //       Number
+    //       <Field className={css.input} type="tel" name="number" />
+    //       <ErrorMessage name="number" />
+    //     </label>
+    //     <button className={css.btnSubmit} type="submit">
+    //       add contact
+    //     </button>
+    //   </Form>
+    // </Formik>
   );
 };

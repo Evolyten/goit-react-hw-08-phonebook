@@ -1,21 +1,31 @@
-import css from '../ContactList/ContactList.module.css';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { deleteContact } from 'redux/contactsOperation';
-
+import { useSelector } from 'react-redux';
+import { getIsLoading } from 'redux/contactsSelectors';
+import { Button, ButtonGroup } from '@chakra-ui/react';
+import { ListItem } from '@chakra-ui/react';
 export function ContactListItem({ user }) {
+  const isLoadingg = useSelector(getIsLoading);
   const dispatch = useDispatch();
   const { id, name, number } = user;
   return (
-    <li className={css.user_item}>
-      {name}: <span>{number}</span>
-      <button
-        className={css.user_delete_btn}
+    <ListItem
+      display="flex"
+      alignItems="center"
+      justifyContent="space-between"
+      mb="20px"
+    >
+      {name}: {number}
+      <Button
+        h={30}
+        colorScheme="teal"
+        variant="outline"
         onClick={() => dispatch(deleteContact(id))}
       >
         Delete
-      </button>
-    </li>
+      </Button>
+    </ListItem>
   );
 }
 

@@ -1,8 +1,8 @@
 import React from 'react';
-import css from './ContactList.module.css';
 import { useSelector } from 'react-redux';
 import { ContactListItem } from 'components/ContactBook/ContactListItem/ContactListItem';
 import { getContacts, getFilter } from 'redux/contactsSelectors';
+import { OrderedList } from '@chakra-ui/react';
 
 const UserList = () => {
   const contacts = useSelector(getContacts);
@@ -15,12 +15,12 @@ const UserList = () => {
   }
 
   return (
-    <ul className={css.user_list}>
+    <OrderedList width={300} mt="20px" fontFamily="sans-serif" fontSize={16}>
       {renderByFilter().map(contact => (
         <ContactListItem key={contact.id} user={contact} />
       ))}
       {}
-    </ul>
+    </OrderedList>
   );
 };
 
