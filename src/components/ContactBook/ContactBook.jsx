@@ -6,13 +6,16 @@ import Filter from './Filter/Filter';
 import { Section } from 'components/Section/Section';
 import { Toaster } from 'react-hot-toast';
 import { useSelector } from 'react-redux';
-import { fetchContact } from 'redux/contactsOperation';
+import { fetchContact } from 'redux/contacts/contactsOperation';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { Box } from '@chakra-ui/react';
 
 import Loader from './Loader/Loader';
-import { getContacts, getIsLoading } from '../../redux/contactsSelectors';
+import {
+  getContacts,
+  getIsLoading,
+} from '../../redux/contacts/contactsSelectors';
 export default function ContactBook() {
   const contacts = useSelector(getContacts);
   const isLoading = useSelector(getIsLoading);

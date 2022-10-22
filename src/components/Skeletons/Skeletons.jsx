@@ -1,31 +1,32 @@
-import styled from 'styled-components';
-import React from 'react';
-import ContentLoader from 'react-content-loader';
+import { createStandaloneToast } from '@chakra-ui/react';
+const { toast } = createStandaloneToast();
 
-const Wrap = styled.div`
-  text-align: center;
-`;
+export function ToastSuccess() {
+  return toast({
+    title: 'Account created.',
+    description: "We've created your account for you.",
+    status: 'success',
+    duration: 3000,
+    isClosable: true,
+  });
+}
 
-const FormLoader = styled(ContentLoader)`
-  display: flex;
-  margin: 0 auto;
-`;
-const MyLoader = props => (
-  <Wrap>
-    <FormLoader
-      speed={2}
-      width={476}
-      height={124}
-      viewBox="0 0 476 124"
-      backgroundColor="#dcdada"
-      foregroundColor="#ecebeb"
-      {...props}
-    >
-      <rect x="157" y="49" rx="3" ry="3" width="176" height="19" />
-      <rect x="208" y="110" rx="3" ry="3" width="78" height="17" />
-      <rect x="158" y="79" rx="3" ry="3" width="176" height="19" />
-    </FormLoader>
-  </Wrap>
-);
+export function ToastFailed() {
+  return toast({
+    title: 'Something going wrong...',
+    description: `Incorrect Login or password. Pls try one more time`,
+    status: 'error',
+    duration: 3000,
+    isClosable: true,
+  });
+}
 
-export default MyLoader;
+export function ToastFailedRegistration() {
+  return toast({
+    title: 'Something going wrong...',
+    description: `Pls try one more time`,
+    status: 'error',
+    duration: 3000,
+    isClosable: true,
+  });
+}

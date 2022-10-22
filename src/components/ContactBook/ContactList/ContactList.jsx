@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { ContactListItem } from 'components/ContactBook/ContactListItem/ContactListItem';
-import { getContacts, getFilter } from 'redux/contactsSelectors';
+import { getContacts, getFilter } from 'redux/contacts/contactsSelectors';
 import { OrderedList } from '@chakra-ui/react';
 
 const UserList = () => {

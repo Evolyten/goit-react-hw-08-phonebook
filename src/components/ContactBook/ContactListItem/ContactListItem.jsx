@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { deleteContact } from 'redux/contactsOperation';
+import { deleteContact } from 'redux/contacts/contactsOperation';
 // import { useSelector } from 'react-redux';
 // import { getIsLoading } from 'redux/contactsSelectors';
 import { Button } from '@chakra-ui/react';

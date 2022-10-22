@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { getIsLoggedIn } from 'redux/contactsSelectors';
+import { getIsLoggedIn } from 'redux/auth/authSlector';
 import { Navigate } from 'react-router-dom';
 
 export default function PrivateRoute({ children, ...routePath }) {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Formik, Field, ErrorMessage } from 'formik';
-import { logIn } from 'redux/contactsOperation';
+import { logIn } from 'redux/auth/authOperation';
 import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 import { Section } from 'components/Section/Section';
@@ -34,9 +34,7 @@ const validationSchema = Yup.object().shape({
 
 const LogInForm = () => {
   const dispatch = useDispatch();
-
   const handleSubmit = (user, { resetForm }) => {
-    console.log(user);
     dispatch(logIn(user));
     resetForm();
   };

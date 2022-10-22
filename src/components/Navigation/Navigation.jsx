@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { List, Item } from '../AppBar/SideBar.styled';
 import { useSelector } from 'react-redux';
-import { getIsLoggedIn } from 'redux/contactsSelectors';
+import { getIsLoggedIn } from 'redux/auth/authSlector';
 
 const NavItem = styled(NavLink)`
   color: black;

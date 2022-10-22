@@ -1,10 +1,10 @@
 import React from 'react';
 import { Formik, Field, ErrorMessage } from 'formik';
 import toast from 'react-hot-toast';
-import { addContact } from 'redux/contactsOperation';
+import { addContact } from 'redux/contacts/contactsOperation';
 import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup';
-import { getContacts } from 'redux/contactsSelectors';
+import { getContacts } from 'redux/contacts/contactsSelectors';
 import { Button, FormLabel, Input, VStack } from '@chakra-ui/react';
 import { Section } from 'components/Section/Section';
 const initialValues = {

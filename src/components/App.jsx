@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import SideBar from './AppBar/AppBar';
 
 import { Routes, Route } from 'react-router-dom';
-import { fetchCurrentUser } from 'redux/contactsOperation';
-import { getIsCurrentUserFetching } from 'redux/contactsSelectors';
+import { fetchCurrentUser } from 'redux/auth/authOperation';
+import { getIsCurrentUserFetching } from 'redux/auth/authSlector';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublickRoute';
 

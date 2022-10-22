@@ -4,7 +4,7 @@ import EnterForms from 'components/EnterForms/EnterForms';
 import UserMenu from 'components/UserMenu/UserMenu';
 import Navigation from 'components/Navigation/Navigation';
 import { useSelector } from 'react-redux';
-import { getIsLoggedIn } from 'redux/contactsSelectors';
+import { getIsLoggedIn } from 'redux/auth/authSlector';
 
 const SideBar = () => {
   const isLoggedIn = useSelector(getIsLoggedIn);

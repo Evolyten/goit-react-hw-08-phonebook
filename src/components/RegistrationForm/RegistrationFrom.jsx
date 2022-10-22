@@ -1,6 +1,6 @@
 import React from 'react';
 import { Formik, Field, ErrorMessage } from 'formik';
-import { register } from 'redux/contactsOperation';
+import { register } from 'redux/auth/authOperation';
 import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 import { Section } from 'components/Section/Section';
@@ -34,7 +34,7 @@ const validationSchema = Yup.object().shape({
       /^([a-zA-Z0-9_\-.]+)@([a-zA-Z0-9_\-.]+)\.([a-zA-z]+)$/,
       'Not correct email'
     ),
-  password: Yup.string().min(6, 'Minimum 6 letters'),
+  password: Yup.string().min(7, 'Minimum 7 letters'),
 });
 
 const RegistrationForm = () => {
@@ -49,7 +49,7 @@ const RegistrationForm = () => {
 
   return (
     <Flex bg="gray.100" justify="center" h="100vh">
-      <Section title="Registration" height={450}>
+      <Section title="Registration" height={450} width={400}>
         <Formik
           initialValues={initialValues}
           onSubmit={handleSubmit}
@@ -91,15 +91,6 @@ const RegistrationForm = () => {
                     type="password"
                     variant="filled"
                     autoComplete="current-password"
-                    validate={value => {
-                      let error;
-
-                      if (value.length < 5) {
-                        error = 'Password must contain at least 6 characters';
-                      }
-
-                      return error;
-                    }}
                   />
                   <ErrorMessage name="password" />
                 </FormControl>
