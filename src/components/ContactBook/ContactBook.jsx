@@ -27,13 +27,13 @@ export default function ContactBook() {
         display="flex"
         bgColor="gray.100"
         h="100vh"
-        flexDirection="column"
-        // justifyContent="center"
-        alignItems="center"
+        // flexDirection="column"
+        justifyContent="space-between"
+        // alignItems="center"
         p={30}
       >
         <ContactForm />
-        <Section title="Contacts" width={400}>
+        <Section title="Contacts" width={400} height="auto">
           <Filter />
           {!!contacts.length && <UserList />}
           {isLoading && <Loader />}
