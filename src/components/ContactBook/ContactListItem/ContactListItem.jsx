@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { deleteContact } from 'redux/contactsOperation';
-import { useSelector } from 'react-redux';
-import { getIsLoading } from 'redux/contactsSelectors';
-import { Button, ButtonGroup } from '@chakra-ui/react';
+// import { useSelector } from 'react-redux';
+// import { getIsLoading } from 'redux/contactsSelectors';
+import { Button } from '@chakra-ui/react';
 import { ListItem } from '@chakra-ui/react';
 export function ContactListItem({ user }) {
-  const isLoadingg = useSelector(getIsLoading);
+  // const isLoadingg = useSelector(getIsLoading);
   const dispatch = useDispatch();
   const { id, name, number } = user;
   return (
