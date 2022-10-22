@@ -32,7 +32,7 @@ const validationSchema = Yup.object().shape({
     .required('Please enter the number')
     .matches(
       /^([a-zA-Z0-9_\-.]+)@([a-zA-Z0-9_\-.]+)\.([a-zA-z]+)$/,
-      'Not correct email'
+      'example qwerr@mail.com'
     ),
   password: Yup.string().min(7, 'Minimum 7 letters'),
 });
@@ -69,7 +69,7 @@ const RegistrationForm = () => {
                   />
                 </FormControl>
                 <ErrorMessage name="name" />
-                <FormControl>
+                <FormControl isInvalid={!!errors.email && touched.email}>
                   <FormLabel htmlFor="email">Email Address</FormLabel>
                   <Field
                     as={Input}
