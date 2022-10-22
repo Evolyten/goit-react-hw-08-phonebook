@@ -26,7 +26,7 @@ export default function App() {
   return (
     !isCurrentUserFetching && (
       <>
-        (<SideBar />
+        <SideBar />
         <Suspense fallback={null}>
           <Routes>
             <Route
@@ -63,7 +63,6 @@ export default function App() {
             />
           </Routes>
         </Suspense>
-        )
       </>
     )
   );
