@@ -1,14 +1,15 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import { List, Item } from '../AppBar/SideBar.styled';
 import { useSelector } from 'react-redux';
 import { getIsLoggedIn } from 'redux/auth/authSlector';
+import { Box } from '@chakra-ui/react';
 
 const NavItem = styled(NavLink)`
   color: black;
   text-decoration: none;
   margin: 0 20px 0 20px;
   font-size: 20px;
+  color: #fff;
 
   &.active {
     color: red;
@@ -17,18 +18,16 @@ const NavItem = styled(NavLink)`
 const Navigation = () => {
   const isLoggedIn = useSelector(getIsLoggedIn);
   return (
-    <List>
-      <Item>
-        <NavItem to={'/'} end>
-          Главная
-        </NavItem>
-      </Item>
+    <Box>
+      <NavItem to={'/'} end>
+        Main Page
+      </NavItem>
       {isLoggedIn && (
-        <Item>
-          <NavItem to={'/contacts'}>Контакт</NavItem>
-        </Item>
+        <NavItem to={'/contacts'} active={{ color: 'red' }}>
+          Contacts
+        </NavItem>
       )}
-    </List>
+    </Box>
   );
 };
 

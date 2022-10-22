@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 import styled from 'styled-components';
 const NavItem = styled(NavLink)`
-  color: black;
+  color: #fff;
   text-decoration: none;
   margin: 0 20px 0 20px;
   font-size: 20px;
@@ -16,10 +16,10 @@ const EnterForms = () => {
   return (
     <List>
       <Item>
-        <NavItem to={'/register'}>Регистрация</NavItem>
+        <NavItem to={'/register'}>Registration</NavItem>
       </Item>
       <Item>
-        <NavItem to={'/login'}>Войти</NavItem>
+        <NavItem to={'/login'}>Log In</NavItem>
       </Item>
     </List>
   );

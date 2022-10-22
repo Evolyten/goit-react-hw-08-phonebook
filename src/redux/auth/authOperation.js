@@ -5,7 +5,7 @@ import {
   ToastFailed,
   ToastFailedRegistration,
   ToastSuccess,
-} from 'components/Skeletons/Skeletons';
+} from 'components/Toast/Toast';
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 const token = {
   set(token) {

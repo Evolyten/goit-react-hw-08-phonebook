@@ -4,7 +4,6 @@ import { ContactForm } from './ContactForm/ContactForm';
 import UserList from './ContactList/ContactList';
 import Filter from './Filter/Filter';
 import { Section } from 'components/Section/Section';
-import { Toaster } from 'react-hot-toast';
 import { useSelector } from 'react-redux';
 import { fetchContact } from 'redux/contacts/contactsOperation';
 import { useDispatch } from 'react-redux';
@@ -28,7 +27,7 @@ export default function ContactBook() {
     <>
       <Box
         display="flex"
-        bgColor="gray.100"
+        bgColor="rgb(52, 56, 61)"
         h="100vh"
         // flexDirection="column"
         justifyContent="space-between"
@@ -41,7 +40,6 @@ export default function ContactBook() {
           {!!contacts.length && <UserList />}
           {isLoading && <Loader />}
         </Section>
-        <Toaster position="top-right" reverseOrder={true} />
       </Box>
     </>
   );

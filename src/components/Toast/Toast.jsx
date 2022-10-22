@@ -30,3 +30,13 @@ export function ToastFailedRegistration() {
     isClosable: true,
   });
 }
+
+export function ToastFailedContact(name) {
+  return toast({
+    title: 'Same name',
+    description: `${name} is already in contacts`,
+    status: 'error',
+    duration: 3000,
+    isClosable: true,
+  });
+}

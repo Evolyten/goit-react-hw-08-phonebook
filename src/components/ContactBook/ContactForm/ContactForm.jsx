@@ -1,12 +1,21 @@
 import React from 'react';
 import { Formik, Field, ErrorMessage } from 'formik';
-import toast from 'react-hot-toast';
 import { addContact } from 'redux/contacts/contactsOperation';
 import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup';
 import { getContacts } from 'redux/contacts/contactsSelectors';
-import { Button, FormLabel, Input, VStack } from '@chakra-ui/react';
+import {
+  Button,
+  FormLabel,
+  Input,
+  VStack,
+  InputLeftElement,
+  InputGroup,
+} from '@chakra-ui/react';
 import { Section } from 'components/Section/Section';
+import { ToastFailedContact } from 'components/Toast/Toast';
+import { ChatIcon, PhoneIcon } from '@chakra-ui/icons';
+
 const initialValues = {
   name: '',
   number: '',
@@ -37,7 +46,7 @@ export const ContactForm = () => {
 
   const handleSubmit = (user, { resetForm }) => {
     if (contacts.some(contact => contact.name === user.name)) {
-      toast.error(`${user.name} is already in contacts`);
+      ToastFailedContact(user.name);
       resetForm();
       return;
     }
@@ -46,7 +55,7 @@ export const ContactForm = () => {
   };
 
   return (
-    <Section title="Phonebook" height={400}>
+    <Section title="Phonebook" height={350}>
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}
@@ -54,27 +63,44 @@ export const ContactForm = () => {
       >
         {({ handleSubmit, errors, touched }) => (
           <form onSubmit={handleSubmit}>
-            <VStack spacing={6} align="flex-start">
-              <FormLabel htmlFor="name">Contact Name</FormLabel>
-              <Field
-                as={Input}
-                id="name"
-                name="name"
-                type="name"
-                variant="filled"
-              />
+            <VStack spacing={3} align="flex-start">
+              <FormLabel htmlFor="name"></FormLabel>
+              <InputGroup>
+                <InputLeftElement
+                  pointerEvents="none"
+                  children={<ChatIcon color="gray.300" />}
+                />
+                <Field
+                  as={Input}
+                  id="name"
+                  name="name"
+                  type="name"
+                  variant="filled"
+                  placeholder="Contact Name"
+                  pl="40px"
+                />
+              </InputGroup>
               <ErrorMessage name="name" />
-              <FormLabel htmlFor="number">Number</FormLabel>
-              <Field
-                as={Input}
-                id="number"
-                name="number"
-                type="number"
-                variant="filled"
-                autoComplete="current-password"
-              />
+              <FormLabel htmlFor="number"></FormLabel>
+              <FormLabel htmlFor="name"></FormLabel>
+              <InputGroup>
+                <InputLeftElement
+                  pointerEvents="none"
+                  children={<PhoneIcon color="gray.300" />}
+                />
+                <Field
+                  as={Input}
+                  id="number"
+                  name="number"
+                  type="number"
+                  variant="filled"
+                  autoComplete="current-password"
+                  placeholder="Phone Number"
+                  pl="40px"
+                />
+              </InputGroup>
               <ErrorMessage name="number" />
-              <Button type="submit" colorScheme="purple" width="full">
+              <Button type="submit" colorScheme="purple" width="full" mt="40px">
                 Add Contact
               </Button>
             </VStack>

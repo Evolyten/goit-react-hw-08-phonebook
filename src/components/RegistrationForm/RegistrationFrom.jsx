@@ -11,7 +11,10 @@ import {
   FormLabel,
   Input,
   VStack,
+  InputLeftElement,
+  InputGroup,
 } from '@chakra-ui/react';
+import { UnlockIcon, EmailIcon, ChatIcon } from '@chakra-ui/icons';
 
 const initialValues = {
   name: '',
@@ -26,7 +29,7 @@ const validationSchema = Yup.object().shape({
     .max(30, 'Name must have less then 30 letter')
     .matches(
       /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/,
-      "Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+      'Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer'
     ),
   email: Yup.string()
     .required('Please enter the number')
@@ -48,7 +51,7 @@ const RegistrationForm = () => {
   };
 
   return (
-    <Flex bg="gray.100" justify="center" h="100vh">
+    <Flex bg="rgb(52, 56, 61)" justify="center" h="100vh">
       <Section title="Registration" height={450} width={400}>
         <Formik
           initialValues={initialValues}
@@ -58,40 +61,64 @@ const RegistrationForm = () => {
           {({ handleSubmit, errors, touched }) => (
             <form onSubmit={handleSubmit}>
               <VStack h={400} spacing={6} align="flex-start">
-                <FormControl>
-                  <FormLabel htmlFor="name">Contact Name</FormLabel>
-                  <Field
-                    as={Input}
-                    id="name"
-                    name="name"
-                    type="name"
-                    variant="filled"
-                  />
+                <FormControl isInvalid={!!errors.name && touched.name}>
+                  <FormLabel htmlFor="name"></FormLabel>
+                  <InputGroup>
+                    <InputLeftElement
+                      pointerEvents="none"
+                      children={<ChatIcon color="gray.300" />}
+                    />
+                    <Field
+                      as={Input}
+                      id="name"
+                      name="name"
+                      type="name"
+                      variant="filled"
+                      placeholder="User Name"
+                      pl="40px"
+                    />
+                  </InputGroup>
                 </FormControl>
                 <ErrorMessage name="name" />
                 <FormControl isInvalid={!!errors.email && touched.email}>
-                  <FormLabel htmlFor="email">Email Address</FormLabel>
-                  <Field
-                    as={Input}
-                    id="email"
-                    name="email"
-                    type="email"
-                    variant="filled"
-                    autoComplete="username"
-                  />
+                  <FormLabel htmlFor="email"></FormLabel>
+                  <InputGroup>
+                    <InputLeftElement
+                      pointerEvents="none"
+                      children={<EmailIcon color="gray.300" />}
+                    />
+                    <Field
+                      as={Input}
+                      id="email"
+                      name="email"
+                      type="email"
+                      variant="filled"
+                      autoComplete="username"
+                      placeholder="Email"
+                      pl="40px"
+                    />
+                  </InputGroup>
                 </FormControl>
                 <ErrorMessage name="email" />
 
                 <FormControl isInvalid={!!errors.password && touched.password}>
-                  <FormLabel htmlFor="password">Password</FormLabel>
-                  <Field
-                    as={Input}
-                    id="password"
-                    name="password"
-                    type="password"
-                    variant="filled"
-                    autoComplete="current-password"
-                  />
+                  <FormLabel htmlFor="password"></FormLabel>
+                  <InputGroup>
+                    <InputLeftElement
+                      pointerEvents="none"
+                      children={<UnlockIcon color="gray.300" />}
+                    />
+                    <Field
+                      as={Input}
+                      id="password"
+                      name="password"
+                      type="password"
+                      variant="filled"
+                      autoComplete="current-password"
+                      placeholder="Password"
+                      pl="40px"
+                    />
+                  </InputGroup>
                   <ErrorMessage name="password" />
                 </FormControl>
 
