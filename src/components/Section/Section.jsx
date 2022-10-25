@@ -3,7 +3,6 @@ import { Box, Heading, useColorMode } from '@chakra-ui/react';
 
 export function Section({ title, width = '350px', children }) {
   const { colorMode } = useColorMode();
-  console.log(colorMode);
 
   return (
     <Box
