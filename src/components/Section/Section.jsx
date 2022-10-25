@@ -1,15 +1,21 @@
 import { PropTypes } from 'prop-types';
-import { Box, Heading } from '@chakra-ui/react';
-export function Section({ title, height, width = '350px', children }) {
+import { Box, Heading, useColorMode } from '@chakra-ui/react';
+
+export function Section({ title, width = '350px', children }) {
+  const { colorMode } = useColorMode();
+  console.log(colorMode);
+
   return (
     <Box
-      bg="white"
-      p="15px"
-      rounded="md"
+      as="div"
+      // bg={colorMode === 'dark' ? 'gray.50' : 'blue'}
+      // p="10px"
+      rounded="4px"
       w={width}
-      h={height}
+      m="0 auto"
       mt="50px"
       textAlign="center"
+      color={colorMode === 'dark' ? 'gray.200' : 'black'}
     >
       <Heading as="h2" mb="15px">
         {title}

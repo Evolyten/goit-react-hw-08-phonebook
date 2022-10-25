@@ -1,27 +1,25 @@
-import { List, Item } from '../AppBar/SideBar.styled';
+import { useColorMode, Box } from '@chakra-ui/react';
 import { NavLink } from 'react-router-dom';
 
 import styled from 'styled-components';
 const NavItem = styled(NavLink)`
-  color: #fff;
   text-decoration: none;
   margin: 0 20px 0 20px;
   font-size: 20px;
 
   &.active {
-    color: red;
+    color: #4299e1;
   }
 `;
 const EnterForms = () => {
+  const { colorMode } = useColorMode();
+
   return (
-    <List>
-      <Item>
-        <NavItem to={'/register'}>Registration</NavItem>
-      </Item>
-      <Item>
-        <NavItem to={'/login'}>Log In</NavItem>
-      </Item>
-    </List>
+    <Box color={colorMode === 'dark' ? 'gray.200' : 'black'}>
+      <NavItem to={'/register'}>Registration</NavItem>
+
+      <NavItem to={'/login'}>Log In</NavItem>
+    </Box>
   );
 };
 

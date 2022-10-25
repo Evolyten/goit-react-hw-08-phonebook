@@ -15,7 +15,18 @@ const UserList = () => {
   }
 
   return (
-    <OrderedList width={300} mt="20px" fontFamily="sans-serif" fontSize={16}>
+    <OrderedList
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+      width="100%"
+      margin="0"
+      mt="20px"
+      fontFamily="sans-serif"
+      fontSize={16}
+      h="650px"
+      overflow="auto"
+    >
       {renderByFilter().map(contact => (
         <ContactListItem key={contact.id} user={contact} />
       ))}

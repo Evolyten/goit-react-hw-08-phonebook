@@ -11,6 +11,8 @@ import {
   VStack,
   InputLeftElement,
   InputGroup,
+  useColorMode,
+  FormControl,
 } from '@chakra-ui/react';
 import { Section } from 'components/Section/Section';
 import { ToastFailedContact } from 'components/Toast/Toast';
@@ -43,6 +45,7 @@ const validationSchema = Yup.object().shape({
 export const ContactForm = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(getContacts);
+  const { colorMode } = useColorMode();
 
   const handleSubmit = (user, { resetForm }) => {
     if (contacts.some(contact => contact.name === user.name)) {
@@ -55,7 +58,7 @@ export const ContactForm = () => {
   };
 
   return (
-    <Section title="Phonebook" height={350}>
+    <Section title="Phonebook" width={{ sm: '290px', lg: '350px' }}>
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}
@@ -63,44 +66,54 @@ export const ContactForm = () => {
       >
         {({ handleSubmit, errors, touched }) => (
           <form onSubmit={handleSubmit}>
-            <VStack spacing={3} align="flex-start">
-              <FormLabel htmlFor="name"></FormLabel>
-              <InputGroup>
-                <InputLeftElement
-                  pointerEvents="none"
-                  children={<ChatIcon color="gray.300" />}
-                />
-                <Field
-                  as={Input}
-                  id="name"
-                  name="name"
-                  type="name"
-                  variant="filled"
-                  placeholder="Contact Name"
-                  pl="40px"
-                />
-              </InputGroup>
-              <ErrorMessage name="name" />
-              <FormLabel htmlFor="number"></FormLabel>
-              <FormLabel htmlFor="name"></FormLabel>
-              <InputGroup>
-                <InputLeftElement
-                  pointerEvents="none"
-                  children={<PhoneIcon color="gray.300" />}
-                />
-                <Field
-                  as={Input}
-                  id="number"
-                  name="number"
-                  type="number"
-                  variant="filled"
-                  autoComplete="current-password"
-                  placeholder="Phone Number"
-                  pl="40px"
-                />
-              </InputGroup>
-              <ErrorMessage name="number" />
-              <Button type="submit" colorScheme="purple" width="full" mt="40px">
+            <VStack spacing={4} align="flex-start">
+              <FormControl>
+                <FormLabel htmlFor="name"></FormLabel>
+                <InputGroup flexDirection="column">
+                  <InputLeftElement
+                    pointerEvents="none"
+                    children={<ChatIcon color="gray.300" />}
+                  />
+                  <Field
+                    as={Input}
+                    id="name"
+                    name="name"
+                    type="name"
+                    variant="filled"
+                    placeholder="Contact Name"
+                    pl="40px"
+                  />
+                  <ErrorMessage name="name" />
+                </InputGroup>
+              </FormControl>
+              <FormControl>
+                <FormLabel htmlFor="number"></FormLabel>
+                <InputGroup flexDirection="column" marginTop="0">
+                  <InputLeftElement
+                    pointerEvents="none"
+                    children={<PhoneIcon color="gray.300" />}
+                  />
+                  <Field
+                    as={Input}
+                    id="number"
+                    name="number"
+                    type="number"
+                    variant="filled"
+                    autoComplete="current-password"
+                    placeholder="Phone Number"
+                    pl="40px"
+                  />
+                  <ErrorMessage name="number" />
+                </InputGroup>
+              </FormControl>
+              <Button
+                type="submit"
+                colorScheme="blue"
+                backgroundColor={colorMode === 'dark' ? 'blue.600' : 'blue.400'}
+                color="#fff"
+                width="full"
+                marginTop="20px"
+              >
                 Add Contact
               </Button>
             </VStack>
@@ -108,27 +121,5 @@ export const ContactForm = () => {
         )}
       </Formik>
     </Section>
-
-    // <Formik
-    //   initialValues={initialValues}
-    //   onSubmit={handleSubmit}
-    //   validationSchema={validationSchema}
-    // >
-    //   <Form className={css.form}>
-    //     <label className={css.label}>
-    //       Name
-    //       <Field className={css.input} type="text" name="name" />
-    //       <ErrorMessage name="name" />
-    //     </label>
-    //     <label className={css.label}>
-    //       Number
-    //       <Field className={css.input} type="tel" name="number" />
-    //       <ErrorMessage name="number" />
-    //     </label>
-    //     <button className={css.btnSubmit} type="submit">
-    //       add contact
-    //     </button>
-    //   </Form>
-    // </Formik>
   );
 };

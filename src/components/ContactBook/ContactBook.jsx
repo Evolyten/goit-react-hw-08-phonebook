@@ -26,16 +26,18 @@ export default function ContactBook() {
   return (
     <>
       <Box
-        display="flex"
-        bgColor="rgb(52, 56, 61)"
-        h="100vh"
-        // flexDirection="column"
+        display={{ sm: 'block', md: 'flex' }}
         justifyContent="space-between"
-        // alignItems="center"
-        p={30}
+        width={{ sm: '320px', md: '768px', lg: '960px', xl: '1200px' }}
+        p={{ sm: '15px', md: '30px' }}
+        m="0 auto"
       >
         <ContactForm />
-        <Section title="Contacts" width={400} height="auto">
+        <Section
+          title="Contacts"
+          width={{ sm: '290px', lg: '350px' }}
+          height="auto"
+        >
           <Filter />
           {!!contacts.length && <UserList />}
           {isLoading && <Loader />}

@@ -3,27 +3,33 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { getIsLoggedIn } from 'redux/auth/authSlector';
 import { Box } from '@chakra-ui/react';
+import { useColorMode } from '@chakra-ui/react';
 
 const NavItem = styled(NavLink)`
-  color: black;
   text-decoration: none;
   margin: 0 20px 0 20px;
   font-size: 20px;
-  color: #fff;
-
   &.active {
-    color: red;
+    color: #4299e1;
+  }
+  @media (max-width: 768px) {
+    fon-size: 16px;
   }
 `;
 const Navigation = () => {
   const isLoggedIn = useSelector(getIsLoggedIn);
+  const { colorMode } = useColorMode();
+
   return (
-    <Box>
-      <NavItem to={'/'} end>
+    <Box
+      color={colorMode === 'dark' ? 'white' : 'black'}
+      fontSize={{ sm: '16px', md: '20px' }}
+    >
+      <NavItem as={NavLink} to={'/'} end>
         Main Page
       </NavItem>
       {isLoggedIn && (
-        <NavItem to={'/contacts'} active={{ color: 'red' }}>
+        <NavItem as={NavLink} to={'/contacts'}>
           Contacts
         </NavItem>
       )}

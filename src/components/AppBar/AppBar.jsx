@@ -4,23 +4,33 @@ import UserMenu from 'components/UserMenu/UserMenu';
 import Navigation from 'components/Navigation/Navigation';
 import { useSelector } from 'react-redux';
 import { getIsLoggedIn } from 'redux/auth/authSlector';
-import { Box } from '@chakra-ui/react';
+import { Box, useColorMode } from '@chakra-ui/react';
+import { ColorModeSwitcher } from '../../ColorModeSwitcher';
 
 const SideBar = () => {
   const isLoggedIn = useSelector(getIsLoggedIn);
+  const { colorMode } = useColorMode();
   return (
     <>
       <Box
         as="header"
-        display="flex"
-        padding="20px 30px"
-        justifyContent="space-between"
-        borderBottom="2px solid red"
-        bgColor="#373837"
-        color="#fff"
+        borderBottom="1px solid red"
+        borderBottomColor="gray.600"
       >
-        <Navigation />
-        {isLoggedIn ? <UserMenu /> : <EnterForms />}
+        <Box
+          display="flex"
+          width={{ sm: '320px', md: '768px', lg: '960px', xl: '1200px' }}
+          flexDirection={{ sm: 'column', md: 'row' }}
+          padding="20px 30px"
+          justifyContent="space-between"
+          alignItems="center"
+          color={colorMode === 'dark' ? 'gray.200' : 'black'}
+          margin="0 auto"
+        >
+          <Navigation />
+          <ColorModeSwitcher />
+          {isLoggedIn ? <UserMenu /> : <EnterForms />}
+        </Box>
       </Box>
       <Outlet />
     </>
